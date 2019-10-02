@@ -8,7 +8,7 @@ Array.prototype.log = function () {
     console.log(this[arrayLocation]);
   }
 }
-/* Array.prototype.reverse = function () {
+Array.prototype.reverse = function () {
   var reversedArray = [];
   for (var arrayLocation = this.length - 1; arrayLocation >= 0; arrayLocation--) {
     reversedArray.push(this[arrayLocation]);
@@ -17,7 +17,7 @@ Array.prototype.log = function () {
     this[arrayLocation] = reversedArray[arrayLocation];
   }
   return this;
-} */
+}
 Array.prototype.shuffle = function () {
   var newPos = 0;
   var tempVar = 0;
@@ -60,8 +60,8 @@ Array.prototype.addItem = function (whereToAdd, thingToAdd) {
     return this;
   }
   }
-/* Array.prototype.changeItem = function(whereToChange,valueToChange){
-  if (whereToChange==="index"){
+Array.prototype.changeItem = function(whereToChange,valueToChange){
+/*   if (whereToChange==="index"){
     if (indexToChange >= this.length) {
       return "That index does not exist";
     }
@@ -80,5 +80,5 @@ Array.prototype.addItem = function (whereToAdd, thingToAdd) {
       }
   }
 }
-}
 } */
+}

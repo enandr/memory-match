@@ -21,43 +21,49 @@ function initializeApp(){
   $('.row').on('click','.card',clicked)
 }
 function clicked(event) {
-  $(event.currentTarget.firstElementChild).toggleClass('hide');
-  $(event.currentTarget.lastElementChild).toggleClass('hide');
-
-  if (firstClicked===null && secondClicked===null){
-    firstClicked = $(event.currentTarget.firstElementChild);
-    firstClickedBack = $(event.currentTarget.lastElementChild);
-    firstCard = $(event.currentTarget);
+  if ($(event.currentTarget).hasClass('clicked')){
+    //! If it has a class of clicked do nothing
   }
   else{
-    secondClicked = $(event.currentTarget.firstElementChild);
-    secondClickedBack = $(event.currentTarget.lastElementChild);
-    secondCard = $(event.currentTarget);
-    if (firstClicked.css('background-image') !== secondClicked.css('background-image')){
-      //! DIFFERENT CARDS CLICKED
-      $('.card').prop('disabled',true);
-      secondClicked.addClass('clicked');
-      setTimeout(function () {
-        firstClicked.toggleClass('hide');
-        secondClicked.toggleClass('hide');
-        firstClickedBack.toggleClass('hide');
-        secondClickedBack.toggleClass('hide');
+    $(event.currentTarget.firstElementChild).toggleClass('hide');
+    $(event.currentTarget.lastElementChild).toggleClass('hide');
+
+    if (firstClicked === null && secondClicked === null) {
+      firstClicked = $(event.currentTarget.firstElementChild);
+      firstClickedBack = $(event.currentTarget.lastElementChild);
+      firstCard = $(event.currentTarget);
+    }
+    else {
+      secondClicked = $(event.currentTarget.firstElementChild);
+      secondClickedBack = $(event.currentTarget.lastElementChild);
+      secondCard = $(event.currentTarget);
+      if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
+//!-----------DIFFERENT CARDS CLICKED--------------//
+        $('.card').prop('disabled', true);
+        setTimeout(function () {
+          firstClicked.toggleClass('hide');
+          secondClicked.toggleClass('hide');
+          firstClickedBack.toggleClass('hide');
+          secondClickedBack.toggleClass('hide');
+          firstCard.removeClass('clicked');
+          secondCard.removeClass('clicked');
+          firstClicked = null;
+          secondClicked = null;
+          $('.card').prop('disabled', false);
+        }, 1500)
+        tryAttempts += 1;
+        updateStats();
+        console.log("diff clicked");
+      } else {
+//!-------------SAME CARDS CLICKED----------------//
+        console.log("same clicked");
+        firstCard.addClass('clicked');
+        secondCard.addClass('clicked');
         firstClicked = null;
         secondClicked = null;
-        $('.card').prop('disabled', false);
-      }, 1500)
-      tryAttempts += 1;
-      updateStats();
-      console.log("diff clicked");
-    }else{
-      //! SAME CARDS CLICKED
-      console.log("same clicked");
-        firstClicked = null;
-        secondClicked = null;
-      $(firstCard).prop('disabled', true);
-      $(secondCard).prop('disabled', true);
-      tryAttempts += 1;
-      updateStats();
+        tryAttempts += 1;
+        updateStats();
+      }
     }
   }
 }
@@ -68,13 +74,7 @@ function updateStats(){
   // statsObj.divAccuracy.text(tryAccuacy);
 
 }
-function enableCheat(trueOrFalse){
-  if (trueOrFalse===true){
+function enableCheat(){
     $('.cardBack').css('opacity', .5);
     $('.cardFront').css('display', 'block');
-  }
-  else{
-    $('.cardBack').css('opacity', '');
-    $('.cardFront').css('display', 'none');
-  }
 }
