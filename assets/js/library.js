@@ -32,61 +32,53 @@ Array.prototype.shuffle = function () {
 Array.prototype.findPositon = function (thingToFind) {
   for (var position = 0; position < this.length; position++) {
     if (this[position] === thingToFind) {
-      this.splice(position, 1);
-      return array;
+      return thingToFind+" is at index "+position;
     }
-    else if (position === array.length - 1 && array[position] !== thingToRemove) {
+    else if (position === this.length - 1 && this[position] !== thingToFind) {
       return "That item does not exist"
     }
   }
 }
 Array.prototype.removeItem = function (array, thingToRemove) {
-  for (var position = 0; position < array.length; position++) {
-    if (array[position] === thingToRemove) {
-      array.splice(position, 1);
-      return array;
+  for (var position = 0; position < this.length; position++) {
+    if (this[position] === thingToRemove) {
+      this.splice(position, 1);
+      return this;
     }
-    else if (position === array.length - 1 && array[position] !== thingToRemove) {
+    else if (position === this.length - 1 && this[position] !== thingToRemove) {
       return "That item does not exist"
     }
   }
 }
 Array.prototype.addItem = function (whereToAdd, thingToAdd) {
-  var obj = {
-    start: function () {
-      this.unshift(thingToAdd);
-      console.log(this);
-      return this;
-    },
-    end: function () {
-      this.push(thingToAdd);
-      console.log(this);
-      return this;
-    }
+  if (whereToAdd === "end") {
+    this.push(thingToAdd);
+    return this;
   }
-  obj[whereToAdd];
-}
-Array.prototype.changeItem = {
-  atIndex: function (array, indexToChange, valueToChange) {
-    if (indexToChange >= array.length) {
+  else if (whereToAdd === "start") {
+    this.unshift(thingToAdd);
+    return this;
+  }
+  }
+/* Array.prototype.changeItem = function(whereToChange,valueToChange){
+  if (whereToChange==="index"){
+    if (indexToChange >= this.length) {
       return "That index does not exist";
     }
     else {
-      array[indexToChange] = valueToChange;
-      return array;
-    }
-
-  },
-  //finds the item in the index and changes it
-  atItem: function (array, itemToChange, valueToChange) {
-    for (var position = 0; position < array.length; position++) {
-      if (array[position] === itemToChange) {
-        array[position] = valueToChange;
-        return array;
+      this[indexToChange] = valueToChange;
+      return this;
+  }
+  if (whereToChange==="item"){
+    for (var position = 0; position < this.length; position++) {
+      if (this[position] === itemToChange) {
+        this[position] = valueToChange;
+        return this;
       }
-      else if (position === array.length - 1 && array[position] !== itemToChange) {
+      else if (position === this.length - 1 && this[position] !== itemToChange) {
         return "That item does not exist";
       }
-    }
   }
 }
+}
+} */

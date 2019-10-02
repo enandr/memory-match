@@ -20,7 +20,7 @@ header {
   margin: 2px;
   position: relative;
   border-radius: 10px;
-  background-image: url(../images/no-cheating.jpg);
+  /* background-image: url(../images/no-cheating.jpg); */
   background-size: 100%;
 }
 .stats {
