@@ -20,6 +20,8 @@ header {
   margin: 2px;
   position: relative;
   border-radius: 10px;
+  background-image: url(../images/no-cheating.jpg);
+  background-size: 100%;
 }
 .stats {
   width: 10%;
@@ -28,7 +30,7 @@ header {
   height: 100%;
 }
 .game {
-  width: 80%;
+  width: 100%;
 }
 .row {
   display: flex;
@@ -53,4 +55,11 @@ header {
   background-color: blue;
   background-image: url("../images/lfz-card.jpg");
   background-size: 100%;
+}
+.cardFront {
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hide {
+  display: none;
 }
