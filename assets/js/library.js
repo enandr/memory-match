@@ -8,7 +8,7 @@ Array.prototype.log = function () {
     console.log(this[arrayLocation]);
   }
 }
-Array.prototype.reverse = function () {
+/* Array.prototype.reverse = function () {
   var reversedArray = [];
   for (var arrayLocation = this.length - 1; arrayLocation >= 0; arrayLocation--) {
     reversedArray.push(this[arrayLocation]);
@@ -17,7 +17,7 @@ Array.prototype.reverse = function () {
     this[arrayLocation] = reversedArray[arrayLocation];
   }
   return this;
-}
+} */
 Array.prototype.shuffle = function () {
   var newPos = 0;
   var tempVar = 0;

@@ -14,13 +14,13 @@ header {
 }
 .card {
   height: 115px;
-  width: 100px;
+  width: 115px;
   background-color: black;
   display: inline-block;
   margin: 2px;
   position: relative;
   border-radius: 10px;
-  /* background-image: url(../images/no-cheating.jpg); */
+  background-image: url(../images/no-cheating.jpg);
   background-size: 100%;
 }
 .stats {
@@ -50,14 +50,14 @@ header {
   height: 100%;
   width: 100%;
   position: absolute;
+  background-size: 100% 100%;
 }
 .cardBack {
   background-color: blue;
   background-image: url("../images/lfz-card.jpg");
-  background-size: 100%;
+  /* display: none; */
 }
 .cardFront {
-  background-size: 100%;
   background-repeat: no-repeat;
 }
 .hide {

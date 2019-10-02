@@ -1,49 +1,80 @@
 $(document).ready(initializeApp);
-var firstClicked = null, secondClicked = null, match = null,firstClickedBack = null,secondClickedBack = null;
+var firstClicked = null, secondClicked = null, match = null,firstClickedBack = null,secondClickedBack = null,firstCard =null, secondCard = null;
+var tryAttempts = 0,gamesPlayed = 0,tryAccuacy=0+"%";
+var statsObj = {};
 
 function initializeApp(){
-  $('.cardFront').removeClass('hide');
+  $('.cardFront').addClass('hide');
   var selected = $('.cardFront');
   var images = ["assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png", "assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png"]
-  // images.shuffle();
+  images.shuffle();
 
   for (var imageIndex = 0; imageIndex < 18; imageIndex++){
-    console.log("selected: ", selected);
     $(selected[imageIndex]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
-    // console.log(currentSelection.css('background-image'));
   }
+  statsObj.divAttempts = $('#attempts');
+  statsObj.divPlayed = $('#games-played');
+  statsObj.divAccuracy = $('#accuracy');
+  statsObj.divAttempts.text(tryAttempts);
+  statsObj.divPlayed.text(gamesPlayed);
+  statsObj.divAccuracy.text(tryAccuacy);
   $('.row').on('click','.card',clicked)
 }
 function clicked(event) {
-  /* console.log("this: ",this);
-  console.log("current target: ",$(event.currentTarget)); */
-  // $(event.currentTarget.firstElementChild).toggleClass('hide');
+  $(event.currentTarget.firstElementChild).toggleClass('hide');
   $(event.currentTarget.lastElementChild).toggleClass('hide');
 
- if (firstClicked===null && secondClicked===null){
-   firstClicked = $(event.currentTarget.firstElementChild)
-    console.log("firstClicked: ", firstClicked);
-   firstClickedBack = $(event.currentTarget.lastElementChild);
+  if (firstClicked===null && secondClicked===null){
+    firstClicked = $(event.currentTarget.firstElementChild);
+    firstClickedBack = $(event.currentTarget.lastElementChild);
+    firstCard = $(event.currentTarget);
   }
   else{
     secondClicked = $(event.currentTarget.firstElementChild);
-    console.log(secondClicked);
     secondClickedBack = $(event.currentTarget.lastElementChild);
-   if (firstClicked.css('background-image') !== secondClicked.css('background-image')){
-     console.log("first card clicked: ", firstClicked.css('background-image'))
-     console.log("second card clicked: ", secondClicked.css('background-image'))
+    secondCard = $(event.currentTarget);
+    if (firstClicked.css('background-image') !== secondClicked.css('background-image')){
+      //! DIFFERENT CARDS CLICKED
+      $('.card').prop('disabled',true);
+      secondClicked.addClass('clicked');
       setTimeout(function () {
+        firstClicked.toggleClass('hide');
+        secondClicked.toggleClass('hide');
         firstClickedBack.toggleClass('hide');
         secondClickedBack.toggleClass('hide');
+        firstClicked = null;
+        secondClicked = null;
+        $('.card').prop('disabled', false);
       }, 1500)
+      tryAttempts += 1;
+      updateStats();
       console.log("diff clicked");
-      firstClicked = null;
-      secondClicked = null;
     }else{
+      //! SAME CARDS CLICKED
       console.log("same clicked");
-      setTimeout(function(){
-
-      },1500)
+        firstClicked = null;
+        secondClicked = null;
+      $(firstCard).prop('disabled', true);
+      $(secondCard).prop('disabled', true);
+      tryAttempts += 1;
+      updateStats();
     }
+  }
+}
+
+function updateStats(){
+  statsObj.divAttempts.text(tryAttempts);
+  // statsObj.divPlayed.text(gamesPlayed);
+  // statsObj.divAccuracy.text(tryAccuacy);
+
+}
+function enableCheat(trueOrFalse){
+  if (trueOrFalse===true){
+    $('.cardBack').css('opacity', .5);
+    $('.cardFront').css('display', 'block');
+  }
+  else{
+    $('.cardBack').css('opacity', '');
+    $('.cardFront').css('display', 'none');
   }
 }
