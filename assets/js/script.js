@@ -38,7 +38,7 @@ function clicked(event) {
     if (firstClicked === null && secondClicked === null) {
       firstClicked = $(event.currentTarget.firstElementChild);
       firstClickedBack = $(event.currentTarget.lastElementChild);
-      firstCard = $(event.currentTarget);
+      firstCard = $(event.currentTarget).addClass('clicked');
     }
     else {
       secondClicked = $(event.currentTarget.firstElementChild);
@@ -60,10 +60,10 @@ function clicked(event) {
         }, 1500)
         tryAttempts += 1;
         updateStats();
-        console.log("diff clicked");
+        /* console.log("diff clicked"); */
       } else {
 //!-------------SAME CARDS CLICKED----------------//
-        console.log("same clicked");
+        // console.log("same clicked");
         firstCard.addClass('clicked');
         secondCard.addClass('clicked');
         firstClicked = null;
@@ -111,6 +111,21 @@ function updateStats(){
   statsObj.divAccuracy.text(tryAccuacy + "%");
 }
 function enableCheat(){
-    $('.cardBack').css('opacity', .5);
-    $('.cardFront').css('display', 'block');
+  $('.cardBack').css('opacity', .5);
+  $('.cardFront').css('display', 'block');
+}
+function disableCheat(){
+  $('.cardBack').css('opacity', '');
+  var disable = $('.card').firstElementChild;
+  console.log(disable);
+  var current=null;
+  for (var key in disable){
+    if (key<18){
+      current=disable[key];
+      if (!current.hasClass('clicked')){
+        $('.cardFront').css('display', 'none');
+      }
+    }
+
+  }
 }
