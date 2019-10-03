@@ -5,20 +5,27 @@ var statsObj = {};
 
 function initializeApp(){
   $('.cardFront').addClass('hide');
-  var selected = $('.cardFront');
-  var images = ["assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png", "assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png"]
-  images.shuffle();
-
-  for (var imageIndex = 0; imageIndex < 18; imageIndex++){
-    $(selected[imageIndex]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
-  }
+  $('.cardBack').removeClass('hide');
   statsObj.divAttempts = $('#attempts');
   statsObj.divPlayed = $('#games-played');
   statsObj.divAccuracy = $('#accuracy');
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
-  $('.row').on('click','.card',clicked);
+  setImages();
+  applyClick();
+}
+function setImages(){
+  var selected = $('.cardFront');
+  var images = ["assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png", "assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png"]
+  images.shuffle();
+
+  for (var imageIndex = 0; imageIndex < 18; imageIndex++) {
+    $(selected[imageIndex]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+  }
+}
+function applyClick(){
+  $('.row').on('click', '.card', clicked);
 }
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
@@ -51,6 +58,7 @@ function clicked(event) {
           secondClicked = null;
           $('.card').prop('disabled', false);
         }, 1500)
+        tryAttempts += 1;
         updateStats();
         console.log("diff clicked");
       } else {
@@ -61,23 +69,43 @@ function clicked(event) {
         firstClicked = null;
         secondClicked = null;
         matches+=1;
+        tryAttempts += 1;
+        updateStats();
         if (matches===9){
           gamesPlayed++;
-         /*  var restart = confirm("You Win!! Restart Game");
+          matches=0;
+          var restart = confirm("You Win!! Restart Game");
           if (restart){
-            location.reload(true);
-          } */
-          alert("you win");
+            restartGame();
+          }
+          // alert("you win");
         }
-        updateStats();
       }
     }
   }
 }
-
+function restartGame(){
+  $('div.card').removeClass('clicked');
+  $('.cardFront').addClass('hide');
+  $('.cardBack').removeClass('hide');
+  tryAttempts = 0;
+  tryAccuacy = 0;
+  firstClicked = null;
+  secondClicked = null;
+  matches = null;
+  firstClickedBack = null;
+  secondClickedBack = null;
+  firstCard = null;
+  secondCard = null;
+  // statsObj = {};
+  setImages();
+  updateStats();
+}
 function updateStats(){
-  tryAttempts += 1;
   tryAccuacy = ((matches/tryAttempts)*100).toFixed(0);
+  if (isNaN(tryAccuacy)){
+    tryAccuacy=0;
+  }
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
