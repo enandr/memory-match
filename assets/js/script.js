@@ -29,23 +29,25 @@ function applyClick(){
 }
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
-    //! If it has a class of clicked do nothing
+//!------------IF HAS CLICKED DO NOTHING-------------//
   }
   else{
     $(event.currentTarget.firstElementChild).toggleClass('hide');
     $(event.currentTarget.lastElementChild).toggleClass('hide');
-
+//!-------------------FIRST CARD--------------------//
     if (firstClicked === null && secondClicked === null) {
       firstClicked = $(event.currentTarget.firstElementChild);
       firstClickedBack = $(event.currentTarget.lastElementChild);
       firstCard = $(event.currentTarget).addClass('clicked');
     }
+//!------------------SECOND CARD-------------------//
     else {
+
       secondClicked = $(event.currentTarget.firstElementChild);
       secondClickedBack = $(event.currentTarget.lastElementChild);
       secondCard = $(event.currentTarget);
-      if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
 //!-----------DIFFERENT CARDS CLICKED--------------//
+      if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
         $('.card').prop('disabled', true);
         setTimeout(function () {
           firstClicked.toggleClass('hide');
@@ -61,8 +63,9 @@ function clicked(event) {
         tryAttempts += 1;
         updateStats();
         /* console.log("diff clicked"); */
-      } else {
+      }
 //!-------------SAME CARDS CLICKED----------------//
+      else {
         // console.log("same clicked");
         firstCard.addClass('clicked');
         secondCard.addClass('clicked');

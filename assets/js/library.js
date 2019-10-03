@@ -1,14 +1,13 @@
 //This function library manipulates arrays and objects
 //Created by Roger Enand
 //version 0.1
-
-//manipulateArray is an object with functions designed to manipulate and create arrays
+//!-------ARRAYS---------!//
 Array.prototype.log = function () {
   for (var arrayLocation = 0; arrayLocation < this.length; arrayLocation++) {
     console.log(this[arrayLocation]);
   }
 }
-Array.prototype.reverse = function () {
+Array.prototype.flip = function () {
   var reversedArray = [];
   for (var arrayLocation = this.length - 1; arrayLocation >= 0; arrayLocation--) {
     reversedArray.push(this[arrayLocation]);
@@ -60,16 +59,7 @@ Array.prototype.addItem = function (whereToAdd, thingToAdd) {
     return this;
   }
   }
-Array.prototype.changeItem = function(whereToChange,valueToChange){
-/*   if (whereToChange==="index"){
-    if (indexToChange >= this.length) {
-      return "That index does not exist";
-    }
-    else {
-      this[indexToChange] = valueToChange;
-      return this;
-  }
-  if (whereToChange==="item"){
+Array.prototype.changeItem = function(itemToChange,valueToChange){
     for (var position = 0; position < this.length; position++) {
       if (this[position] === itemToChange) {
         this[position] = valueToChange;
@@ -80,5 +70,10 @@ Array.prototype.changeItem = function(whereToChange,valueToChange){
       }
   }
 }
-} */
+Array.prototype.toObject = function () {
+  var newObj={}
+  for (var index = 0;index<this.length;index++){
+    newObj[index] = this[index];
+  }
+  return newObj;
 }
