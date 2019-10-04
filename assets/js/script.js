@@ -3,6 +3,7 @@ var firstClicked = null, secondClicked = null, matches = null,firstClickedBack =
 var tryAttempts = 0,gamesPlayed = 0,tryAccuacy=0;
 var statsObj = {};
 var modal = null;
+var cardCount = 18;
 function initializeApp(){
   $('.cardFront').addClass('hide');
   $('.cardBack').removeClass('hide');
@@ -13,21 +14,46 @@ function initializeApp(){
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
-  // setImages();
-  var cardCount = prompt("Please enter how many cards you want! Must be divisible by 3.", "18");
+ /*  cardCount = prompt("Please enter your difficulty! Standard! Hard! Insane!", "standard");
+  if (isNaN(cardCount)){
+    switch (cardCount) {
+      case "standard":
+        cardCount=18;
+        break;
+      case "insane":
+        cardCount = 72;
+        break;
+      case "hard":
+        cardCount = 36;
+        break;
+      default:
+        cardCount = 18;
+        break;
+  }
+  } */
+
   createCards(cardCount);
   applyClick();
-  enableCheat();
+  // enableCheat();
 }
 function setImages(numCards){
   var selected = $('.cardFront');
-  var images = ["assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png", "assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png"]
+  var images = ['assets/images/final_images/dark-side/Admiral-Ackbar-Its-A-Trap.jpg',
+  'assets/images/final_images/dark-side/kylo-ren-dark-prodigy.png',
+  'assets/images/final_images/dark-side/Captain-Phasma-5-Star.png',
+  'assets/images/final_images/dark-side/Darth-Vader-Shadows-of-Fear-Short-Dark.png',
+  'assets/images/final_images/light-side/Han-Solo-5-Star.jpg',
+  'assets/images/final_images/light-side/luke-skywalker-master-of-the-force-light-short.png',
+  'assets/images/final_images/light-side/maz-kanata-5-star.png',
+  'assets/images/final_images/light-side/Baze-Malbus-5-Star.png',
+  'assets/images/final_images/light-side/Rey-Starkiller-Base-5-Star-Light-Short-Range.png'];
   images.shuffle();
 
   for (var imageIndex = 0,iterations = 0; iterations < numCards; imageIndex++,iterations++) {
     console.log("iteration number: ",iterations);
     if (imageIndex===images.length){
       imageIndex=0;
+      images.shuffle();
       console.log("--------resetting index---------");
       $(selected[iterations]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
     }
@@ -41,10 +67,10 @@ function setImages(numCards){
 function createCards(numOfCards){
 //!--------DYNAMICALLY CREATING THE CARDS-----//
   var rowsToMake = numOfCards/6
-  if (rowsToMake%3===0){
-    console.log("erqerqwe");
+ /*  if (rowsToMake%3===0){
+    console.log("TESTING CHECK");
     rowsToMake=18;
-  }
+  } */
   var gameScreen = $('.game');
   for (var makeRow = rowsToMake ;makeRow>0;makeRow--){
 //!---------------CREATE ROW---------------//
@@ -52,7 +78,7 @@ function createCards(numOfCards){
     for (var makecard = 6;makecard>0;makecard--){
 //!-------CREATE CARD AND FACES AND APPEND THEM----------//
       var newCard = $('<div>').addClass('card');
-      var newFrontCard = $('<div>').addClass('cardFront');
+      var newFrontCard = $('<div>').addClass('cardFront hide');
       var newBackCard = $('<div>').addClass('cardBack');
       newCard.append(newFrontCard,newBackCard);
       newRow.append(newCard);
@@ -115,7 +141,7 @@ function clicked(event) {
         secondClicked = null;
         matches+=1;
         updateStats();
-        if (matches===1){
+        if (matches===cardCount/2){
           gamesPlayed++;
           matches=0;
           modal.css('display','block');
@@ -140,7 +166,7 @@ function restartGame(){
   firstCard = null;
   secondCard = null;
   // statsObj = {};
-  setImages();
+  setImages(36);
   updateStats();
 }
 function updateStats(){

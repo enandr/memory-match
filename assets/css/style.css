@@ -1,5 +1,6 @@
 body{
-  background-image: url("../images/lfz-background.jpg");
+  background-image: url("../images/final_images/backgrounds/bg3.jpg");
+  background-size: 100%;
   margin: 0;
 }
 header {
@@ -9,14 +10,14 @@ header {
   margin: 5px;
 }
 .stats div {
-  background-color: rgba(0, 0, 255, 0.324);
+  background-color: rgb(255, 255, 255);
   margin: 10px;
   height: 40px;
   border-radius: 10px;
 }
 .card {
-  height: 115px;
-  width: 115px;
+  height: 230px;
+  width: 160px;
   background-color: black;
   display: inline-block;
   margin: 2px;
@@ -27,9 +28,11 @@ header {
 }
 .stats {
   width: 10%;
+  position: fixed;
   text-align: center;
   margin-top: 0px;
   height: 100%;
+  background-color: transparent;
 }
 .game {
   width: 100%;
@@ -56,7 +59,7 @@ header {
 }
 .cardBack {
   background-color: blue;
-  background-image: url("../images/lfz-card.jpg");
+  background-image: url("../images/final_images/card-back.jpg");
   /* display: none; */
 }
 .cardFront {
