@@ -13,23 +13,53 @@ function initializeApp(){
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
-  setImages();
+  // setImages();
+  var cardCount = prompt("Please enter how many cards you want! Must be divisible by 3.", "18");
+  createCards(cardCount);
   applyClick();
   enableCheat();
 }
-function setImages(){
+function setImages(numCards){
   var selected = $('.cardFront');
   var images = ["assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png", "assets/images/react-logo.png", "assets/images/css-logo.png", "assets/images/html-logo.png", "assets/images/js-logo.png", "assets/images/mysql-logo.jpg", "assets/images/node-logo.png", "assets/images/php-logo.jpeg", "assets/images/docker-logo.jpg", "assets/images/gitHub-logo.png"]
   images.shuffle();
 
-  for (var imageIndex = 0; imageIndex < 18; imageIndex++) {
-    $(selected[imageIndex]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+  for (var imageIndex = 0,iterations = 0; iterations < numCards; imageIndex++,iterations++) {
+    console.log("iteration number: ",iterations);
+    if (imageIndex===images.length){
+      imageIndex=0;
+      console.log("--------resetting index---------");
+      $(selected[iterations]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+    }
+    else{
+      console.log("image number: ",imageIndex);
+      $(selected[iterations]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+    }
+
   }
 }
 function createCards(numOfCards){
-  var newRow = $('<div>').addClass('row');
-  var newFrontCard = $('<div>').addClass('cardFront');
-  var newBackCard = $('<div>').addClass('cardBack');
+//!--------DYNAMICALLY CREATING THE CARDS-----//
+  var rowsToMake = numOfCards/6
+  if (rowsToMake%3===0){
+    console.log("erqerqwe");
+    rowsToMake=18;
+  }
+  var gameScreen = $('.game');
+  for (var makeRow = rowsToMake ;makeRow>0;makeRow--){
+//!---------------CREATE ROW---------------//
+    var newRow = $('<div>').addClass('row');
+    for (var makecard = 6;makecard>0;makecard--){
+//!-------CREATE CARD AND FACES AND APPEND THEM----------//
+      var newCard = $('<div>').addClass('card');
+      var newFrontCard = $('<div>').addClass('cardFront');
+      var newBackCard = $('<div>').addClass('cardBack');
+      newCard.append(newFrontCard,newBackCard);
+      newRow.append(newCard);
+    }
+    gameScreen.append(newRow);
+  }
+  setImages(numOfCards);
 }
 function applyClick(){
   $('.row').on('click', '.card', clicked);
@@ -40,7 +70,7 @@ function applyClick(){
 }
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
-//!------------IF HAS CLICKED DO NOTHING-------------//
+//?------------IF HAS 'CLICKED' DO NOTHING-------------//
   }
   else{
     $(event.currentTarget.firstElementChild).toggleClass('hide');
@@ -75,6 +105,7 @@ function clicked(event) {
         updateStats();
         /* console.log("diff clicked"); */
       }
+//!-----------END DIFFERENT CARDS CLICKED----------//
 //!-------------SAME CARDS CLICKED----------------//
       else {
         // console.log("same clicked");
@@ -84,12 +115,13 @@ function clicked(event) {
         secondClicked = null;
         matches+=1;
         updateStats();
-        if (matches===9){
+        if (matches===1){
           gamesPlayed++;
           matches=0;
           modal.css('display','block');
         }
       }
+//!-------------END SAME CARDS CLICKED-------------//
     }
   }
 }
