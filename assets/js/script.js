@@ -2,10 +2,11 @@ $(document).ready(initializeApp);
 var firstClicked = null, secondClicked = null, matches = null,firstClickedBack = null,secondClickedBack = null,firstCard =null, secondCard = null;
 var tryAttempts = 0,gamesPlayed = 0,tryAccuacy=0;
 var statsObj = {};
-
+var modal = null;
 function initializeApp(){
   $('.cardFront').addClass('hide');
   $('.cardBack').removeClass('hide');
+  modal = $("#modal");
   statsObj.divAttempts = $('#attempts');
   statsObj.divPlayed = $('#games-played');
   statsObj.divAccuracy = $('#accuracy');
@@ -14,6 +15,7 @@ function initializeApp(){
   statsObj.divAccuracy.text(tryAccuacy + "%");
   setImages();
   applyClick();
+  // enableCheat();
 }
 function setImages(){
   var selected = $('.cardFront');
@@ -26,6 +28,10 @@ function setImages(){
 }
 function applyClick(){
   $('.row').on('click', '.card', clicked);
+  $('#modalClose').on('click',restartGame);
+  modal.on('click',function (){
+    modal.css('display','');
+  })
 }
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
@@ -46,6 +52,7 @@ function clicked(event) {
       secondClicked = $(event.currentTarget.firstElementChild);
       secondClickedBack = $(event.currentTarget.lastElementChild);
       secondCard = $(event.currentTarget);
+      tryAttempts++;
 //!-----------DIFFERENT CARDS CLICKED--------------//
       if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
         $('.card').prop('disabled', true);
@@ -60,7 +67,6 @@ function clicked(event) {
           secondClicked = null;
           $('.card').prop('disabled', false);
         }, 1500)
-        tryAttempts += 1;
         updateStats();
         /* console.log("diff clicked"); */
       }
@@ -72,22 +78,18 @@ function clicked(event) {
         firstClicked = null;
         secondClicked = null;
         matches+=1;
-        tryAttempts += 1;
         updateStats();
         if (matches===9){
           gamesPlayed++;
           matches=0;
-          var restart = confirm("You Win!! Restart Game");
-          if (restart){
-            restartGame();
-          }
-          // alert("you win");
+          modal.css('display','block');
         }
       }
     }
   }
 }
 function restartGame(){
+  $('.modal').css('display', 'none');
   $('div.card').removeClass('clicked');
   $('.cardFront').addClass('hide');
   $('.cardBack').removeClass('hide');

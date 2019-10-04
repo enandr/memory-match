@@ -8,10 +8,19 @@
         <script src="assets/js/script.js"></script>
     </head>
     <body>
-        <header class="header">
-          <h1>Memory Match Game</h1>
-        </header>
-        <div class="container">
+        <div id="modal" class="modal">
+          <div class="modalBody" id="modalBody">
+            <p class="modalText">Congradulations! You Win! Would You Like To Play Again?</p>
+            <p class="modalText">Click The Button Below Or Click Outside This Box To Quit.</p>
+            <button id="modalClose" class="modalClose">Yes! I Want To Play Again</button>
+          </div>
+        </div>
+
+        <div class="allContainer">
+          <header class="header">
+            <h1>Memory Match Game</h1>
+          </header>
+          <div class="container">
           <aside class="stats">
             stats
             <div>
@@ -114,11 +123,7 @@
             </div>
         </main>
         </div>
-        <div id="modal" class="modal">
-            <div class="modalBody" id="modalBody">
-              <p id="modalText" class="modalText">This is my modal</p>
-              <button id="modalClose" class="modalClose">Close</button>
-            </div>
         </div>
+
     </body>
 </html>
