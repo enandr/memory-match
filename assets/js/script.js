@@ -15,7 +15,7 @@ function initializeApp(){
   statsObj.divAccuracy.text(tryAccuacy + "%");
   setImages();
   applyClick();
-  // enableCheat();
+  enableCheat();
 }
 function setImages(){
   var selected = $('.cardFront');
@@ -25,6 +25,11 @@ function setImages(){
   for (var imageIndex = 0; imageIndex < 18; imageIndex++) {
     $(selected[imageIndex]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
   }
+}
+function createCards(numOfCards){
+  var newRow = $('<div>').addClass('row');
+  var newFrontCard = $('<div>').addClass('cardFront');
+  var newBackCard = $('<div>').addClass('cardBack');
 }
 function applyClick(){
   $('.row').on('click', '.card', clicked);
