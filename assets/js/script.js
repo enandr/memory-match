@@ -14,8 +14,8 @@ var firstClicked = null,
     cardCount = 18,
     bgAudioInstantPlay = false,
     superCheatSetting = false,
-    unlocks ={},
-    cheat=false;
+    unlocks = {},
+    cheat=true;
 function initializeApp(){
   modal = $("#modal");
   statsObj.divAttempts = $('#attempts');
@@ -24,6 +24,7 @@ function initializeApp(){
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
+  setUnlocks();
   createCards(cardCount);
   applyClick();
   if (bgAudioInstantPlay){
@@ -35,6 +36,7 @@ function initializeApp(){
 function playAudio(){
   $('#bgAudio').get(0).play();
   $('#stopAudio').text("Stop Audio");
+  unlocks.audio.CantinaBand = true;
 }
 function stopAudio() {
   $('#stopAudio').text("Play Audio");
@@ -111,7 +113,7 @@ function clicked(event) {
 //!-------------------FIRST CARD--------------------//
     if (firstClicked === null && secondClicked === null) {
       firstClicked = $(event.currentTarget.firstElementChild);
-      firstClickedBack = $(event.currentTarget.lastElementChild);
+      // firstClickedBack = $(event.currentTarget.lastElementChild);
       firstCard = $(event.currentTarget).addClass('clicked');
       if(cheat){
         var cheatGlow = $('.cardFront');
@@ -130,7 +132,7 @@ function clicked(event) {
     else {
 
       secondClicked = $(event.currentTarget.firstElementChild);
-      secondClickedBack = $(event.currentTarget.lastElementChild);
+      // secondClickedBack = $(event.currentTarget.lastElementChild);
       secondCard = $(event.currentTarget);
       tryAttempts++;
 //!-----------DIFFERENT CARDS CLICKED--------------//
@@ -142,6 +144,7 @@ function clicked(event) {
 //!-----------END DIFFERENT CARDS CLICKED----------//
 //!-------------SAME CARDS CLICKED----------------//
       else {
+        unlockItem(firstClicked.css('background-image'))
         checkWhichMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
         isLightOrDark(firstClicked.css('background-image'));
         firstCard.addClass('clicked matchedLight');
@@ -251,4 +254,193 @@ function setImageArray() {
     'assets/images/final_images/light-side/Master-Yoda-5-Star.jpg',
     'assets/images/final_images/light-side/Padme-Amidala-Senator-at-War.jpg'];
     return imgArray;
+}
+function setUnlocks(){
+unlocks.lightSide ={ 'AdmiralAckbar':false,
+              'AdmiralAckbarTrap':false,
+              'AmilynHoldoStarBase':false,
+              'AnakinSkywalkerJediGeneral':false,
+              'BailOrgana':false,
+              'BazeMalibus':false,
+              'bb8':false,
+              'bb8FinalPiece':false,
+              'BenKenobi':false,
+              'BenKenobiJediInHiding':false,
+              'C3po':false,
+              'Chewbacca':false,
+              'ChewbaccaHeroReturned':false,
+              'ChewbaccaWookieeWarrior':false,
+              'Finn':false,
+              'GeneralOrgana':false,
+              'HanSolo':false,
+              'HanSoloHeroicSmuggler':false,
+              'HanSoloQuickDraw':false,
+              'JynErso':false,
+              'LandoCalrissian':false,
+              'LukeSkywalkerJedi':false,
+              'LukeSkywalkerMasterOfTheForce':false,
+              'MasterYoda':false,
+              'MasterYodaDefianceOfEvil':false,
+              'MazKanata':false,
+              'PadmeAmidala':false,
+              'r2d2':false,
+              'Rey':false}
+  unlocks.darkSide={  'AnakinSkywalkerFallenKnight':false,
+                'bb9e':false,
+                BobaFett:false,
+                BobaFettDeathForHire:false,
+                BobaFettTheRelentlessHunter:false,
+                CaptainPhasma:false,
+                CaptainPhasmaForTheOrder:false,
+                CaptainPhasmaVereranCommander:false,
+                DarthMaul:false,
+                DarthMaulAssasin:false,
+                DarthMaulMaliceReborn:false,
+                DarthSidious:false,
+                DarthSidiousSithDictator:false,
+                DarthVader:false,
+                DarthVaderShadowsOfFear:false,
+                FlameTrooper:false,
+                StormTrooper:false,
+                GeneralGrievous:false,
+                GeneralGrievousAssaultOnKamino:false,
+                KyloRen:false,
+                KyloRenUnmasked:false},
+  unlocks.audio={ CantinaBand:false,
+            Chewbacca:false,
+            DarthVaderFailedMe:false,
+            DarthVaderGiveYourself:false,
+            DarthVaderHonored:false,
+            DarthVaderOptimism:false,
+            DarthVaderFather:false,
+            HanSolo:false,
+            LukeGreetings:false,
+            r2d2:false}
+  return unlocks;
+}
+function showUnlocks() {
+  var trueUnlocks=0;
+  var KeyTotal = 0;
+  for (var lightKeys in unlocks.lightSide){
+    KeyTotal++;
+    if (unlocks.lightSide[lightKeys]===true){
+      console.log(lightKeys, " : ", unlocks.lightSide[lightKeys]);
+      trueUnlocks++;
+    }
+  }
+  console.log("You have ", KeyTotal-trueUnlocks," light side unlocks to go.");
+  trueUnlocks = 0;
+  KeyTotal = 0;
+  for (var darkKeys in unlocks.darkSide) {
+    KeyTotal++
+    if (unlocks.darkSide[darkKeys] === true) {
+      trueUnlocks++;
+      console.log(darkKeys, " : ", unlocks.darkSide[darkKeys]);
+    }
+  }
+  console.log("You have ", KeyTotal - trueUnlocks, " dark side unlocks to go.");
+  trueUnlocks = 0;
+  KeyTotal = 0;
+  for (var audioKeys in unlocks.audio) {
+    KeyTotal++
+    if (unlocks.audio[audioKeys] === true){
+      trueUnlocks++;
+      console.log("Audio Unlocked "+audioKeys, " : ", unlocks.audio[audioKeys]);
+    }
+  }
+  console.log("You have ", KeyTotal - trueUnlocks, " audio unlocks to go.");
+}
+function unlockItem(matchedItem) {
+  switch (true) {
+    case (matchedItem.lastIndexOf("admiral-ackbar-4-star-medium-light.png") > 0):
+      unlocks.lightSide.AdmiralAckbar = true;
+      break;
+    case (matchedItem.lastIndexOf("Admiral-Ackbar-Its-A-Trap.jpg") > 0):
+      unlocks.lightSide.AdmiralAckbarTrap = true;
+      break;
+    case (matchedItem.lastIndexOf("amilyn-holdo-4-star-base.png") > 0):
+      unlocks.lightSide.AmilynHoldoStarBase = true;
+      break;
+    case (matchedItem.lastIndexOf("Anakin-Skywalker-Jedi-General.png") > 0):
+      unlocks.lightSide.AnakinSkywalkerJediGeneral = true;
+      break;
+    case (matchedItem.lastIndexOf("bail-organa-5-star-light-short.png") > 0):
+      unlocks.lightSide.BailOrgana = true;
+      break;
+    case (matchedItem.lastIndexOf("Baze-Malbus-5-Star.png") > 0):
+      unlocks.lightSide.BazeMalibus = true;
+      break;
+    case (matchedItem.lastIndexOf("bb-8-5-star.png") > 0):
+      unlocks.lightSide.bb8 = true;
+      break;
+    case (matchedItem.lastIndexOf("bb-8-the-final-piece-light-short.png") > 0):
+      unlocks.lightSide.bb8FinalPiece = true;
+      break;
+    case (matchedItem.lastIndexOf("Ben-Kenobi-5-Star.jpg") > 0):
+      unlocks.lightSide.BenKenobi = true;
+      break;
+    case (matchedItem.lastIndexOf("Ben-Kenobi-Jedi-in-Hiding-Light-Short.png") > 0):
+      unlocks.lightSide.BenKenobiJediInHiding = true;
+      break;
+    case (matchedItem.lastIndexOf("C-3PO-5-Star.jpg") > 0):
+      unlocks.lightSide.C3po = true;
+      break;
+    case (matchedItem.lastIndexOf("Chewbacca-5-Star.jpg") > 0):
+      unlocks.lightSide.Chewbacca = true;
+      break;
+    case (matchedItem.lastIndexOf("Chewbacca-A-Hero-Returned.png") > 0):
+      unlocks.lightSide.ChewbaccaHeroReturned = true;
+      break;
+    case (matchedItem.lastIndexOf("Chewbacca-Wookiee-Warrior.jpg") > 0):
+      unlocks.lightSide.ChewbaccaWookieeWarrior = true;
+      break;
+    case (matchedItem.lastIndexOf("Finn-5-Star.png") > 0):
+      unlocks.lightSide.Finn = true;
+      break;
+    case (matchedItem.lastIndexOf("general-organa-leader-of-hope-medium-light.png") > 0):
+      unlocks.lightSide.GeneralOrgana = true;
+      break;
+    case (matchedItem.lastIndexOf("Han-Solo-5-Star.jpg") > 0):
+      unlocks.lightSide.HanSolo = true;
+      break;
+    case (matchedItem.lastIndexOf("han-solo-heroic-smuggler.png") > 0):
+      unlocks.lightSide.HanSoloHeroicSmuggler = true;
+      break;
+    case (matchedItem.lastIndexOf("Han-Solo-Quick-Draw.jpg") > 0):
+      unlocks.lightSide.HanSoloQuickDraw = true;
+      break;
+    case (matchedItem.lastIndexOf("Jyn-Erso-5-Star-Light.png") > 0):
+      unlocks.lightSide.JynErso = true;
+      break;
+    case (matchedItem.lastIndexOf("Lando-Calrissian-Clever-Move.jpg") > 0):
+      unlocks.lightSide.LandoCalrissian = true;
+      break;
+    case (matchedItem.lastIndexOf("luke-skywalker-jedi-hermit-light.png") > 0):
+      unlocks.lightSide.LukeSkywalkerJedi = true;
+      break;
+    case (matchedItem.lastIndexOf("luke-skywalker-master-of-the-force-light-short.png") > 0):
+      unlocks.lightSide.LukeSkywalkerMasterOfTheForce = true;
+      break;
+    case (matchedItem.lastIndexOf("Master-Yoda-5-Star.jpg") > 0):
+      unlocks.lightSide.MasterYoda = true;
+      break;
+    case (matchedItem.lastIndexOf("Master-Yoda-Defiance-of-Evil-Light-Short.png") > 0):
+      unlocks.lightSide.MasterYodaDefianceOfEvil = true;
+      break;
+    case (matchedItem.lastIndexOf("maz-kanata-5-star.png") > 0):
+      unlocks.lightSide.MazKanata = true;
+      break;
+    case (matchedItem.lastIndexOf("Padme-Amidala-Senator-at-War.jpg") > 0):
+      unlocks.lightSide.PadmeAmidala = true;
+      break;
+    case (matchedItem.lastIndexOf("R2-D2-5-Star.jpg") > 0):
+      unlocks.lightSide.r2d2 = true;
+      break;
+    case (matchedItem.lastIndexOf("Rey-Starkiller-Base-5-Star-Light-Short-Range.png") > 0):
+      unlocks.lightSide.Rey = true;
+      break;
+    default:
+      break;
+  }
+  return unlocks;
 }
