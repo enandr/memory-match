@@ -12,10 +12,9 @@ var firstClicked = null,
     statsObj = {},
     modal = null,
     cardCount = 18,
-    cheat=false;
+    bgAudioInstantPlay = false,
+    cheat=true;
 function initializeApp(){
-  $('.cardFront').addClass('hide');
-  $('.cardBack').removeClass('hide');
   modal = $("#modal");
   statsObj.divAttempts = $('#attempts');
   statsObj.divPlayed = $('#games-played');
@@ -23,26 +22,11 @@ function initializeApp(){
   statsObj.divAttempts.text(tryAttempts);
   statsObj.divPlayed.text(gamesPlayed);
   statsObj.divAccuracy.text(tryAccuacy + "%");
-/*   cardCount = prompt("Please enter your difficulty! Standard! Hard! Insane!", "standard");
-  if (isNaN(cardCount)){
-    switch (cardCount) {
-      case "standard":
-        cardCount=18;
-        break;
-      case "insane":
-        cardCount = 72;
-        break;
-      case "hard":
-        cardCount = 36;
-        break;
-      default:
-        cardCount = 18;
-        break;
-  }
-  } */
-
   createCards(cardCount);
   applyClick();
+  if (bgAudioInstantPlay){
+    playAudio();
+  }
   // playAudio();
   // enableCheat();
 }
@@ -57,7 +41,7 @@ function stopAudio() {
 }
 function setImages(numCards){
   var selected = $('.cardFront');
-  var images = ['assets/images/final_images/dark-side/Admiral-Ackbar-Its-A-Trap.jpg',
+  var images = ['assets/images/final_images/light-side/Admiral-Ackbar-Its-A-Trap.jpg',
   'assets/images/final_images/dark-side/kylo-ren-dark-prodigy.png',
   'assets/images/final_images/dark-side/Captain-Phasma-5-Star.png',
   'assets/images/final_images/dark-side/Darth-Vader-Shadows-of-Fear-Short-Dark.png',
@@ -65,17 +49,32 @@ function setImages(numCards){
   'assets/images/final_images/light-side/luke-skywalker-master-of-the-force-light-short.png',
   'assets/images/final_images/light-side/maz-kanata-5-star.png',
   'assets/images/final_images/light-side/Baze-Malbus-5-Star.png',
-  'assets/images/final_images/light-side/R2-D2-5-Star.jpg'];//was rey image
+  'assets/images/final_images/light-side/R2-D2-5-Star.jpg',
+  'assets/images/final_images/light-side/bb-8-5-star.png',
+  'assets/images/final_images/light-side/bb-8-the-final-piece-light-short.png',
+  'assets/images/final_images/light-side/Chewbacca-A-Hero-Returned.png',
+  'assets/images/final_images/light-side/Finn-5-Star.png',
+  'assets/images/final_images/light-side/general-organa-leader-of-hope-medium-light.png',
+  'assets/images/final_images/light-side/Lando-Calrissian-Clever-Move.jpg',
+  'assets/images/final_images/light-side/luke-skywalker-jedi-hermit-light.png',
+  'assets/images/final_images/light-side/Rey-Starkiller-Base-5-Star-Light-Short-Range.png',
+  'assets/images/final_images/dark-side/anakin-skywalker-fallen-knight-short-dark.png',
+  'assets/images/final_images/dark-side/captain-phasma-for-the-order-medium-dark.png',
+  'assets/images/final_images/dark-side/Darth-Vader-Dark-Overseer-Rogue-One-Short.png',
+  'assets/images/final_images/dark-side/first-order-flametrooper-dark-short.png',
+  'assets/images/final_images/dark-side/first-order-stormtrooper-5-star-medium-dark.png',
+  'assets/images/final_images/dark-side/kylo-ren-unmasked-short-dark.png'];
   images.shuffle();
+  var gameImages = images.slice(0,9);
   for (var imageIndex = 0,iterations = 0; iterations < 18; imageIndex++,iterations++) {
 
-    if (imageIndex===images.length){
+    if (imageIndex===gameImages.length){
       imageIndex=0;
-      images.shuffle();
-      $(selected[iterations]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+      gameImages.shuffle();
+      $(selected[iterations]).css({ 'background-image': 'url(' + gameImages[imageIndex] + ')' });
     }
     else{
-      $(selected[iterations]).css({ 'background-image': 'url(' + images[imageIndex] + ')' });
+      $(selected[iterations]).css({ 'background-image': 'url(' + gameImages[imageIndex] + ')' });
     }
 
   }
@@ -155,20 +154,13 @@ function clicked(event) {
       if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
         $('.card').prop('disabled', true);
         checkWhichMisMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
-        /* setTimeout(function () {
-          firstCard.removeClass('clicked flipped');
-          secondCard.removeClass('clicked flipped');
-          firstClicked = null;
-          secondClicked = null;
-          $('.card').prop('disabled', false);
-        }, 1500) */
         updateStats();
-        /* console.log("diff clicked"); */
       }
 //!-----------END DIFFERENT CARDS CLICKED----------//
 //!-------------SAME CARDS CLICKED----------------//
       else {
         checkWhichMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
+        isLightOrDark(firstClicked.css('background-image'));
         firstCard.addClass('clicked matchedLight');
         secondCard.addClass('clicked matchedLight');
         firstClicked = null;
@@ -189,7 +181,7 @@ function clicked(event) {
 }
 function restartGame(){
   $('.modal').css('display', 'none');
-  $('div.card').removeClass('clicked flipped matchedLight');
+  $('div.card').removeClass('clicked flipped matchedLight matchedDark');
 /*   $('.cardFront').addClass('hide');
   $('.cardBack').removeClass('hide'); */
   tryAttempts = 0;
@@ -221,4 +213,7 @@ function enableCheat(){
 function disableCheat(){
   cheat = false;
   console.log("Cheats Inactive");
+}
+function superCheat(){
+  $('.card').addClass('flipped');
 }

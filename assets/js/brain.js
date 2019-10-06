@@ -27,3 +27,12 @@ function checkWhichMisMatch(match,match2) {
     $('.card').prop('disabled', false);
   }, waitTime)
 }
+function isLightOrDark(card) {
+  if (card.lastIndexOf('/dark-side/')>0){
+    firstCard.addClass('clicked matchedDark');
+    secondCard.addClass('clicked matchedDark');
+  }
+  else if (card.lastIndexOf('/light-side/')>0)
+  firstCard.addClass('clicked matchedLight');
+  secondCard.addClass('clicked matchedLight');
+}
