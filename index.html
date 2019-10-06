@@ -5,20 +5,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="assets/css/style.css" />
         <script src="assets/js/library.js"></script>
+        <script src="assets/js/brain.js"></script>
         <script src="assets/js/script.js"></script>
     </head>
     <body>
         <div id="modal" class="modal">
           <div class="modalBody" id="modalBody">
-            <p class="modalText">Congradulations! You Win! Would You Like To Play Again?</p>
-            <p class="modalText">Click The Button Below Or Click Outside This Box To Quit.</p>
+            <p class="modalText">Uh oh! Something Went Wrong With Setting The Text.</p>
             <button id="modalClose" class="modalClose">Yes! I Want To Play Again</button>
           </div>
         </div>
 
         <div class="allContainer">
           <header class="header">
-            <h1>Memory Match Game</h1>
+            <h1>light side or dark side matching game</h1>
           </header>
           <div class="container">
           <aside class="stats">
@@ -41,12 +41,20 @@
             <div>
               <p id="accuracy"></p>
             </div>
+            <button id="stopAudio" class="stopAudio">Play Audio</button>
           </aside>
           <main class="game">
 
         </main>
         </div>
         </div>
-
-    </body>
+        <audio loop id="bgAudio" src="/assets/audio/Cantina_band.mp3"></audio>
+        <audio id="vaderOptimism" class="vader" src="assets/audio/darthvader_optimism.wav"></audio>
+        <audio id="vaderFailedMe" class="vader" src="assets/audio/darthvader_failedme.wav"></audio>
+        <audio id="vaderGiveYourself" class="vader" src="assets/audio/darthvader_giveyourself.wav"></audio>
+        <audio id="vaderTaughtWell" class="vader" src="assets/audio/darthvader_taughtyouwell.wav"></audio>
+        <audio id="vaderHonored" class="vader" src="assets/audio/darthvader_honored.wav"></audio>
+        <audio id="hanBadFeeling" class="han" src="assets/audio/hansolo_badfeeling.wav"></audio>
+        <audio id="vaderFather" class="vaderCard" src="assets/audio/darthvader_yourfather.wav"></audio>
+      </body>
 </html>

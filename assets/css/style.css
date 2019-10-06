@@ -1,13 +1,23 @@
+@font-face{
+  font-family: 'StarWars';
+  src: url('../fonts/star_jedi/starjout/Starjout.ttf');
+}
 body{
   background-image: url("../images/final_images/backgrounds/bg3.jpg");
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
   margin: 0;
 }
 header {
-  border: 1px solid black;
   text-align: center;
+  position: unset;
   border-radius: 10px;
-  margin: 5px;
+  color: yellow;
+  font-family: StarWars;
+  font-size: 1rem;
+  letter-spacing: .5rem;
+  font-weight: bold;
 }
 .stats div {
   background-color: rgb(255, 255, 255);
@@ -18,13 +28,16 @@ header {
 .card {
   height: 230px;
   width: 160px;
-  background-color: black;
   display: inline-block;
-  margin: 2px;
+  margin: 6px;
   position: relative;
   border-radius: 10px;
-  background-image: url(../images/no-cheating.jpg);
   background-size: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.flipped {
+  transform: rotateY(180deg);
 }
 .stats {
   width: 10%;
@@ -43,19 +56,20 @@ header {
 }
 .stats, .game {
   display: inline-block;
-  border: 1px solid black;
-  border-radius: 10px;
+  /* border: 1px solid black;
+  border-radius: 10px; */
   margin: 2px;
 }
 .container {
   display: flex;
   margin: 4px;
 }
-.cardBack, .cardFront {
+.card div{
   height: 100%;
   width: 100%;
   position: absolute;
   background-size: 100% 100%;
+  backface-visibility: hidden;
 }
 .cardBack {
   background-color: blue;
@@ -64,6 +78,8 @@ header {
 }
 .cardFront {
   background-repeat: no-repeat;
+  transform: rotateY(180deg);
+
 }
 .hide {
   display: none;
@@ -101,4 +117,10 @@ header {
 .modalClose {
   padding: 5px 10px;
   font-size: 2rem;
+}
+.matchedLight {
+  box-shadow: 4px 4px 20px green;
+}
+.matchedDark {
+  box-shadow: 4px 4px 20px red;
 }
