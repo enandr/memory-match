@@ -13,7 +13,9 @@ var firstClicked = null,
     modal = null,
     cardCount = 18,
     bgAudioInstantPlay = false,
-    cheat=true;
+    superCheatSetting = false,
+    unlocks ={},
+    cheat=false;
 function initializeApp(){
   modal = $("#modal");
   statsObj.divAttempts = $('#attempts');
@@ -41,29 +43,7 @@ function stopAudio() {
 }
 function setImages(numCards){
   var selected = $('.cardFront');
-  var images = ['assets/images/final_images/light-side/Admiral-Ackbar-Its-A-Trap.jpg',
-  'assets/images/final_images/dark-side/kylo-ren-dark-prodigy.png',
-  'assets/images/final_images/dark-side/Captain-Phasma-5-Star.png',
-  'assets/images/final_images/dark-side/Darth-Vader-Shadows-of-Fear-Short-Dark.png',
-  'assets/images/final_images/light-side/Han-Solo-5-Star.jpg',
-  'assets/images/final_images/light-side/luke-skywalker-master-of-the-force-light-short.png',
-  'assets/images/final_images/light-side/maz-kanata-5-star.png',
-  'assets/images/final_images/light-side/Baze-Malbus-5-Star.png',
-  'assets/images/final_images/light-side/R2-D2-5-Star.jpg',
-  'assets/images/final_images/light-side/bb-8-5-star.png',
-  'assets/images/final_images/light-side/bb-8-the-final-piece-light-short.png',
-  'assets/images/final_images/light-side/Chewbacca-A-Hero-Returned.png',
-  'assets/images/final_images/light-side/Finn-5-Star.png',
-  'assets/images/final_images/light-side/general-organa-leader-of-hope-medium-light.png',
-  'assets/images/final_images/light-side/Lando-Calrissian-Clever-Move.jpg',
-  'assets/images/final_images/light-side/luke-skywalker-jedi-hermit-light.png',
-  'assets/images/final_images/light-side/Rey-Starkiller-Base-5-Star-Light-Short-Range.png',
-  'assets/images/final_images/dark-side/anakin-skywalker-fallen-knight-short-dark.png',
-  'assets/images/final_images/dark-side/captain-phasma-for-the-order-medium-dark.png',
-  'assets/images/final_images/dark-side/Darth-Vader-Dark-Overseer-Rogue-One-Short.png',
-  'assets/images/final_images/dark-side/first-order-flametrooper-dark-short.png',
-  'assets/images/final_images/dark-side/first-order-stormtrooper-5-star-medium-dark.png',
-  'assets/images/final_images/dark-side/kylo-ren-unmasked-short-dark.png'];
+  var images = setImageArray();
   images.shuffle();
   var gameImages = images.slice(0,9);
   for (var imageIndex = 0,iterations = 0; iterations < 18; imageIndex++,iterations++) {
@@ -77,6 +57,9 @@ function setImages(numCards){
       $(selected[iterations]).css({ 'background-image': 'url(' + gameImages[imageIndex] + ')' });
     }
 
+  }
+  if (superCheatSetting){
+    $('.card').addClass('flipped');
   }
 }
 function createCards(numOfCards){
@@ -216,4 +199,56 @@ function disableCheat(){
 }
 function superCheat(){
   $('.card').addClass('flipped');
+}
+function setImageArray() {
+  imgArray = ['assets/images/final_images/light-side/Admiral-Ackbar-Its-A-Trap.jpg',
+    'assets/images/final_images/dark-side/kylo-ren-dark-prodigy.png',
+    'assets/images/final_images/dark-side/Captain-Phasma-5-Star.png',
+    'assets/images/final_images/dark-side/Darth-Vader-Shadows-of-Fear-Short-Dark.png',
+    'assets/images/final_images/light-side/Han-Solo-5-Star.jpg',
+    'assets/images/final_images/light-side/luke-skywalker-master-of-the-force-light-short.png',
+    'assets/images/final_images/light-side/maz-kanata-5-star.png',
+    'assets/images/final_images/light-side/Baze-Malbus-5-Star.png',
+    'assets/images/final_images/light-side/R2-D2-5-Star.jpg',
+    'assets/images/final_images/light-side/bb-8-5-star.png',
+    'assets/images/final_images/light-side/bb-8-the-final-piece-light-short.png',
+    'assets/images/final_images/light-side/Chewbacca-A-Hero-Returned.png',
+    'assets/images/final_images/light-side/Finn-5-Star.png',
+    'assets/images/final_images/light-side/general-organa-leader-of-hope-medium-light.png',
+    'assets/images/final_images/light-side/Lando-Calrissian-Clever-Move.jpg',
+    'assets/images/final_images/light-side/luke-skywalker-jedi-hermit-light.png',
+    'assets/images/final_images/light-side/Rey-Starkiller-Base-5-Star-Light-Short-Range.png',
+    'assets/images/final_images/dark-side/anakin-skywalker-fallen-knight-short-dark.png',
+    'assets/images/final_images/dark-side/captain-phasma-for-the-order-medium-dark.png',
+    'assets/images/final_images/dark-side/Darth-Vader-Dark-Overseer-Rogue-One-Short.png',
+    'assets/images/final_images/dark-side/first-order-flametrooper-dark-short.png',
+    'assets/images/final_images/dark-side/first-order-stormtrooper-5-star-medium-dark.png',
+    'assets/images/final_images/dark-side/kylo-ren-unmasked-short-dark.png',
+    'assets/images/final_images/light-side/Anakin-Skywalker-Jedi-General.png',
+    'assets/images/final_images/light-side/han-solo-heroic-smuggler.png',
+    'assets/images/final_images/light-side/Han-Solo-Quick-Draw.jpg',
+    'assets/images/final_images/dark-side/General-Grievous-5-Star.jpg',
+    'assets/images/final_images/dark-side/General-Grievous-Assault-on-Kamino-Dark-Short-5-Star.png',
+    'assets/images/final_images/light-side/admiral-ackbar-4-star-medium-light.png',
+    'assets/images/final_images/light-side/amilyn-holdo-4-star-base.png',
+    'assets/images/final_images/light-side/bail-organa-5-star-light-short.png',
+    'assets/images/final_images/dark-side/bb-9e-4-star-base.png',
+    'assets/images/final_images/light-side/Ben-Kenobi-5-Star.jpg',
+    'assets/images/final_images/light-side/Ben-Kenobi-Jedi-in-Hiding-Light-Short.png',
+    'assets/images/final_images/dark-side/Boba-Fett-5-Star.jpg',
+    'assets/images/final_images/dark-side/Boba-Fett-Death-for-Hire.jpg',
+    'assets/images/final_images/dark-side/Boba-Fett-The-Relentless-Hunter.jpg',
+    'assets/images/final_images/light-side/C-3PO-5-Star.jpg',
+    'assets/images/final_images/dark-side/captain-phasma-veteran-commander-short-dark.png',
+    'assets/images/final_images/light-side/Chewbacca-5-Star.jpg',
+    'assets/images/final_images/light-side/Chewbacca-Wookiee-Warrior.jpg',
+    'assets/images/final_images/dark-side/Darth-Maul-5-Star.jpg',
+    'assets/images/final_images/dark-side/Darth-Maul-Assassin.jpg',
+    'assets/images/final_images/dark-side/Darth-Maul-Malice-Reborn.png',
+    'assets/images/final_images/dark-side/Darth-Sidious-5-Star.jpg',
+    'assets/images/final_images/dark-side/Darth-Sidious-Sith-Dictator.jpg',
+    'assets/images/final_images/light-side/Jyn-Erso-5-Star-Light.png',
+    'assets/images/final_images/light-side/Master-Yoda-5-Star.jpg',
+    'assets/images/final_images/light-side/Padme-Amidala-Senator-at-War.jpg'];
+    return imgArray;
 }
