@@ -18,7 +18,7 @@ var firstClicked = null,
     superCheatSetting = false,
     showStartModal=true,
     unlocks = {},
-    cheat=true;
+    cheat=false;
 function initializeApp(){
   modal = $("#modal").addClass('hide');
   modalInfo = $("#infoModal").addClass('hide');
