@@ -11,13 +11,20 @@ var firstClicked = null,
     tryAccuacy=0,
     statsObj = {},
     modal = null,
+    starterModal = null,
+    infoModal = {},
     cardCount = 18,
     bgAudioInstantPlay = false,
     superCheatSetting = false,
+    showStartModal=true,
     unlocks = {},
-    cheat=true;
+    cheat=false;
 function initializeApp(){
-  modal = $("#modal");
+  modal = $("#modal,#infoModal").addClass('hide');
+  starterModal = $('#startermodal');
+  if (!showStartModal){
+    starterModal.addClass('hide');
+  }
   statsObj.divAttempts = $('#attempts');
   statsObj.divPlayed = $('#games-played');
   statsObj.divAccuracy = $('#accuracy');
@@ -32,6 +39,9 @@ function initializeApp(){
   }
   // playAudio();
   // enableCheat();
+  /* axios.get('https://swapi.co/api/people').then(function (response) {
+    console.log(response.data);
+  }) */
 }
 function playAudio(){
   $('#bgAudio').get(0).play();
@@ -90,6 +100,12 @@ function createCards(numOfCards){
 function applyClick(){
   $('.row').on('click', '.card', clicked);
   $('#modalClose').on('click',restartGame);
+  $('#starterModalClose').on('click', function(){
+    starterModal.addClass('hide');
+  });
+  $('#infoModal').on('click',function(){
+    $('#infoModal').addClass('hide');
+  })
   modal.on('click',function (){
     modal.css('display','');
   })
@@ -104,7 +120,10 @@ function applyClick(){
 }
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
-//?------------IF HAS 'CLICKED' DO NOTHING-------------//
+  //?------------IF HAS 'CLICKED' DO NOTHING-------------//
+    if ($(event.currentTarget).hasClass('clicked') && $(event.currentTarget).hasClass('matchedLight') || $(event.currentTarget).hasClass('matchedDark')) {
+    getInfoOnPerson($(event.currentTarget.firstElementChild));
+    }
   }
   else{
     // $(event.currentTarget.firstElementChild).toggleClass('flipped');
@@ -147,8 +166,10 @@ function clicked(event) {
         unlockItem(firstClicked.css('background-image'))
         checkWhichMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
         isLightOrDark(firstClicked.css('background-image'));
-        firstCard.addClass('clicked matchedLight');
-        secondCard.addClass('clicked matchedLight');
+        firstCard.addClass('clicked');
+        secondCard.addClass('clicked');
+        firstCard.css('cursor','help');
+        secondCard.css('cursor', 'help');
         firstClicked = null;
         secondClicked = null;
         matches+=1;
@@ -158,7 +179,7 @@ function clicked(event) {
           matches=0;
           $('.modalText').text("The Force Is Strong With You!");
           $('.vader').get(Math.floor(Math.random()*5)).play();
-          modal.css('display','block');
+          modal.removeClass('hide');
         }
       }
 //!-------------END SAME CARDS CLICKED-------------//
@@ -166,7 +187,7 @@ function clicked(event) {
   }
 }
 function restartGame(){
-  $('.modal').css('display', 'none');
+  modal.addClass('hide');
   $('div.card').removeClass('clicked flipped matchedLight matchedDark');
 /*   $('.cardFront').addClass('hide');
   $('.cardBack').removeClass('hide'); */
@@ -349,98 +370,4 @@ function showUnlocks() {
     }
   }
   console.log("You have ", KeyTotal - trueUnlocks, " audio unlocks to go.");
-}
-function unlockItem(matchedItem) {
-  switch (true) {
-    case (matchedItem.lastIndexOf("admiral-ackbar-4-star-medium-light.png") > 0):
-      unlocks.lightSide.AdmiralAckbar = true;
-      break;
-    case (matchedItem.lastIndexOf("Admiral-Ackbar-Its-A-Trap.jpg") > 0):
-      unlocks.lightSide.AdmiralAckbarTrap = true;
-      break;
-    case (matchedItem.lastIndexOf("amilyn-holdo-4-star-base.png") > 0):
-      unlocks.lightSide.AmilynHoldoStarBase = true;
-      break;
-    case (matchedItem.lastIndexOf("Anakin-Skywalker-Jedi-General.png") > 0):
-      unlocks.lightSide.AnakinSkywalkerJediGeneral = true;
-      break;
-    case (matchedItem.lastIndexOf("bail-organa-5-star-light-short.png") > 0):
-      unlocks.lightSide.BailOrgana = true;
-      break;
-    case (matchedItem.lastIndexOf("Baze-Malbus-5-Star.png") > 0):
-      unlocks.lightSide.BazeMalibus = true;
-      break;
-    case (matchedItem.lastIndexOf("bb-8-5-star.png") > 0):
-      unlocks.lightSide.bb8 = true;
-      break;
-    case (matchedItem.lastIndexOf("bb-8-the-final-piece-light-short.png") > 0):
-      unlocks.lightSide.bb8FinalPiece = true;
-      break;
-    case (matchedItem.lastIndexOf("Ben-Kenobi-5-Star.jpg") > 0):
-      unlocks.lightSide.BenKenobi = true;
-      break;
-    case (matchedItem.lastIndexOf("Ben-Kenobi-Jedi-in-Hiding-Light-Short.png") > 0):
-      unlocks.lightSide.BenKenobiJediInHiding = true;
-      break;
-    case (matchedItem.lastIndexOf("C-3PO-5-Star.jpg") > 0):
-      unlocks.lightSide.C3po = true;
-      break;
-    case (matchedItem.lastIndexOf("Chewbacca-5-Star.jpg") > 0):
-      unlocks.lightSide.Chewbacca = true;
-      break;
-    case (matchedItem.lastIndexOf("Chewbacca-A-Hero-Returned.png") > 0):
-      unlocks.lightSide.ChewbaccaHeroReturned = true;
-      break;
-    case (matchedItem.lastIndexOf("Chewbacca-Wookiee-Warrior.jpg") > 0):
-      unlocks.lightSide.ChewbaccaWookieeWarrior = true;
-      break;
-    case (matchedItem.lastIndexOf("Finn-5-Star.png") > 0):
-      unlocks.lightSide.Finn = true;
-      break;
-    case (matchedItem.lastIndexOf("general-organa-leader-of-hope-medium-light.png") > 0):
-      unlocks.lightSide.GeneralOrgana = true;
-      break;
-    case (matchedItem.lastIndexOf("Han-Solo-5-Star.jpg") > 0):
-      unlocks.lightSide.HanSolo = true;
-      break;
-    case (matchedItem.lastIndexOf("han-solo-heroic-smuggler.png") > 0):
-      unlocks.lightSide.HanSoloHeroicSmuggler = true;
-      break;
-    case (matchedItem.lastIndexOf("Han-Solo-Quick-Draw.jpg") > 0):
-      unlocks.lightSide.HanSoloQuickDraw = true;
-      break;
-    case (matchedItem.lastIndexOf("Jyn-Erso-5-Star-Light.png") > 0):
-      unlocks.lightSide.JynErso = true;
-      break;
-    case (matchedItem.lastIndexOf("Lando-Calrissian-Clever-Move.jpg") > 0):
-      unlocks.lightSide.LandoCalrissian = true;
-      break;
-    case (matchedItem.lastIndexOf("luke-skywalker-jedi-hermit-light.png") > 0):
-      unlocks.lightSide.LukeSkywalkerJedi = true;
-      break;
-    case (matchedItem.lastIndexOf("luke-skywalker-master-of-the-force-light-short.png") > 0):
-      unlocks.lightSide.LukeSkywalkerMasterOfTheForce = true;
-      break;
-    case (matchedItem.lastIndexOf("Master-Yoda-5-Star.jpg") > 0):
-      unlocks.lightSide.MasterYoda = true;
-      break;
-    case (matchedItem.lastIndexOf("Master-Yoda-Defiance-of-Evil-Light-Short.png") > 0):
-      unlocks.lightSide.MasterYodaDefianceOfEvil = true;
-      break;
-    case (matchedItem.lastIndexOf("maz-kanata-5-star.png") > 0):
-      unlocks.lightSide.MazKanata = true;
-      break;
-    case (matchedItem.lastIndexOf("Padme-Amidala-Senator-at-War.jpg") > 0):
-      unlocks.lightSide.PadmeAmidala = true;
-      break;
-    case (matchedItem.lastIndexOf("R2-D2-5-Star.jpg") > 0):
-      unlocks.lightSide.r2d2 = true;
-      break;
-    case (matchedItem.lastIndexOf("Rey-Starkiller-Base-5-Star-Light-Short-Range.png") > 0):
-      unlocks.lightSide.Rey = true;
-      break;
-    default:
-      break;
-  }
-  return unlocks;
 }

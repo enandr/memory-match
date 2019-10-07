@@ -4,18 +4,40 @@
         <title>Memory Match Game | Roger Enand</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
         <script src="assets/js/library.js"></script>
         <script src="assets/js/brain.js"></script>
         <script src="assets/js/script.js"></script>
     </head>
     <body>
         <div id="modal" class="modal">
-          <div class="modalBody" id="modalBody">
+          <div class="modalBody" >
             <p class="modalText">Uh oh! Something Went Wrong With Setting The Text.</p>
             <button id="modalClose" class="modalClose">Yes! I Want To Play Again</button>
           </div>
         </div>
-
+        <div id="startermodal" class="modal">
+          <div class="modalBody">
+            <p class="starterText">instructions:<br>
+            the goal is to find all the matches. click on one card then click on another to find its match.<br>
+            if it matches, move on and try to find another match. if it does not match, remember the positions and try again.<br>
+            bonus: some cards interact with each other. others make noise when you match them. do showUnlocks() in the console to see your current unlocked matches and audio.<br>
+            you can also click on some matched cards to get information about them!</p>
+            <button id="starterModalClose" class="modalClose">Got It! Let Me Play</button>
+          </div>
+        </div>
+        <div id="infoModal" class="modal">
+          <div class="modalBody">
+            <h1 id="infoName" class="infoText">Name: </h1>
+            <h2 id="infoSpecies" class="infoText">Species: </h2>
+            <h2 id="infoGender" class="infoText">Gender: </h2>
+            <h2 id="infoHeight" class="infoText">Height: </h2>
+            <h2 id="infoHairColor" class="infoText">Hair Color: </h2>
+            <h2 id="infoEyeColor" class="infoText">Eye Color: </h2>
+            <h2 id="infoWeight" class="infoText">Weight: </h2>
+            <h2 id="infoHomeworld" class="infoText">Home World: </h2>
+          </div>
+        </div>
         <div class="allContainer">
           <header class="header">
             <h1>light side or dark side matching game</h1>
