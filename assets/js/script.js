@@ -18,9 +18,10 @@ var firstClicked = null,
     superCheatSetting = false,
     showStartModal=true,
     unlocks = {},
-    cheat=false;
+    cheat=true;
 function initializeApp(){
-  modal = $("#modal,#infoModal").addClass('hide');
+  modal = $("#modal").addClass('hide');
+  modalInfo = $("#infoModal").addClass('hide');
   starterModal = $('#startermodal');
   if (!showStartModal){
     starterModal.addClass('hide');
@@ -177,7 +178,7 @@ function clicked(event) {
         if (matches===9){
           gamesPlayed++;
           matches=0;
-          $('.modalText').text("The Force Is Strong With You!");
+          $('.modalText').text("the force is strong with you!");
           $('.vader').get(Math.floor(Math.random()*5)).play();
           modal.removeClass('hide');
         }
@@ -308,35 +309,35 @@ unlocks.lightSide ={ 'AdmiralAckbar':false,
               'Rey':false}
   unlocks.darkSide={  'AnakinSkywalkerFallenKnight':false,
                 'bb9e':false,
-                BobaFett:false,
-                BobaFettDeathForHire:false,
-                BobaFettTheRelentlessHunter:false,
-                CaptainPhasma:false,
-                CaptainPhasmaForTheOrder:false,
-                CaptainPhasmaVereranCommander:false,
-                DarthMaul:false,
-                DarthMaulAssasin:false,
-                DarthMaulMaliceReborn:false,
-                DarthSidious:false,
-                DarthSidiousSithDictator:false,
-                DarthVader:false,
-                DarthVaderShadowsOfFear:false,
-                FlameTrooper:false,
-                StormTrooper:false,
-                GeneralGrievous:false,
-                GeneralGrievousAssaultOnKamino:false,
-                KyloRen:false,
-                KyloRenUnmasked:false},
+                'BobaFett':false,
+                'BobaFettDeathForHire':false,
+                'BobaFettTheRelentlessHunter':false,
+                'CaptainPhasma':false,
+                'CaptainPhasmaForTheOrder':false,
+                'CaptainPhasmaVereranCommander':false,
+                'DarthMaul':false,
+                'DarthMaulAssasin':false,
+                'DarthMaulMaliceReborn':false,
+                'DarthSidious':false,
+                'DarthSidiousSithDictator':false,
+                'DarthVader':false,
+                'DarthVaderShadowsOfFear':false,
+                'FlameTrooper':false,
+                'StormTrooper':false,
+                'GeneralGrievous':false,
+                'GeneralGrievousAssaultOnKamino':false,
+                'KyloRen':false,
+                'KyloRenUnmasked':false},
   unlocks.audio={ CantinaBand:false,
-            Chewbacca:false,
-            DarthVaderFailedMe:false,
-            DarthVaderGiveYourself:false,
-            DarthVaderHonored:false,
-            DarthVaderOptimism:false,
-            DarthVaderFather:false,
-            HanSolo:false,
-            LukeGreetings:false,
-            r2d2:false}
+            'Chewbacca':false,
+            'DarthVaderFailedMe':false,
+            'DarthVaderGiveYourself':false,
+            'DarthVaderHonored':false,
+            'DarthVaderOptimism':false,
+            'DarthVaderFather':false,
+            'HanSolo':false,
+            'LukeGreetings':false,
+            'r2d2':false}
   return unlocks;
 }
 function showUnlocks() {

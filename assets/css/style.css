@@ -110,8 +110,11 @@ header {
   right: 0;
   top: 0;
 }
-.modalText {
+.modalText{
   font-size: 2rem;
+  color: yellow;
+  font-family: StarWars;
+  letter-spacing: .5rem;
 }
 .modalClose {
   padding: 5px 10px;

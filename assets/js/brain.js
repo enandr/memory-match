@@ -134,6 +134,70 @@ function unlockItem(matchedItem) {
     case (matchedItem.lastIndexOf("Rey-Starkiller-Base-5-Star-Light-Short-Range.png") > 0):
       unlocks.lightSide.Rey = true;
       break;
+      //!--------dark side--------------
+    case (matchedItem.lastIndexOf("anakin-skywalker-fallen-knight-short-dark.png") > 0):
+      unlocks.darkSide.AnakinSkywalkerFallenKnight = true;
+      break;
+    case (matchedItem.lastIndexOf("bb-9e-4-star-base.png") > 0):
+      unlocks.darkSide.bb9e = true;
+      break;
+    case (matchedItem.lastIndexOf("Boba-Fett-5-Star.jpg") > 0):
+      unlocks.darkSide.BobaFett = true;
+      break;
+    case (matchedItem.lastIndexOf("Boba-Fett-Death-for-Hire.jpg") > 0):
+      unlocks.darkSide.BobaFettDeathForHire = true;
+      break;
+    case (matchedItem.lastIndexOf("Boba-Fett-The-Relentless-Hunter.jpg") > 0):
+      unlocks.darkSide.BobaFettTheRelentlessHunter = true;
+      break;
+    case (matchedItem.lastIndexOf("Captain-Phasma-5-Star.png") > 0):
+      unlocks.darkSide.CaptainPhasma = true;
+      break;
+    case (matchedItem.lastIndexOf("captain-phasma-for-the-order-medium-dark.png") > 0):
+      unlocks.darkSide.CaptainPhasmaForTheOrder = true;
+      break;
+    case (matchedItem.lastIndexOf("captain-phasma-veteran-commander-short-dark.png") > 0):
+      unlocks.darkSide.CaptainPhasmaVereranCommander = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Maul-5-Star.jpg") > 0):
+      unlocks.darkSide.DarthMaul = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Maul-Assassin.jpg") > 0):
+      unlocks.darkSide.DarthMaulAssasin = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Maul-Malice-Reborn.png") > 0):
+      unlocks.darkSide.DarthMaulMaliceReborn = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Sidious-5-Star.jpg") > 0):
+      unlocks.darkSide.DarthSidious = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Sidious-Sith-Dictator.jpg") > 0):
+      unlocks.darkSide.DarthSidiousSithDictator = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Vader-Dark-Overseer-Rogue-One-Short.png") > 0):
+      unlocks.darkSide.DarthVader = true;
+      break;
+    case (matchedItem.lastIndexOf("Darth-Vader-Shadows-of-Fear-Short-Dark.png") > 0):
+      unlocks.darkSide.DarthVaderShadowsOfFear = true;
+      break;
+    case (matchedItem.lastIndexOf("first-order-flametrooper-dark-short.png") > 0):
+      unlocks.darkSide.FlameTrooper = true;
+      break;
+    case (matchedItem.lastIndexOf("first-order-stormtrooper-5-star-medium-dark.png") > 0):
+      unlocks.darkSide.StormTrooper = true;
+      break;
+    case (matchedItem.lastIndexOf("General-Grievous-5-Star.jpg") > 0):
+      unlocks.darkSide.GeneralGrievous = true;
+      break;
+    case (matchedItem.lastIndexOf("General-Grievous-Assault-on-Kamino-Dark-Short-5-Star.png") > 0):
+      unlocks.darkSide.GeneralGrievousAssaultOnKamino = true;
+      break;
+    case (matchedItem.lastIndexOf("kylo-ren-dark-prodigy.png") > 0):
+      unlocks.darkSide.KyloRen = true;
+      break;
+    case (matchedItem.lastIndexOf("kylo-ren-unmasked-short-dark.png") > 0):
+      unlocks.darkSide.KyloRenUnmasked = true;
+      break;
     default:
       break;
   }
