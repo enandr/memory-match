@@ -204,6 +204,7 @@ function restartGame(){
   // statsObj = {};
   setTimeout(setImages,1000)
   updateStats();
+  $('.card').css('cursor','');
 }
 function updateStats(){
   tryAccuacy = ((matches/tryAttempts)*100).toFixed(0);
