@@ -38,11 +38,6 @@ function initializeApp(){
   if (bgAudioInstantPlay){
     playAudio();
   }
-  // playAudio();
-  // enableCheat();
-  /* axios.get('https://swapi.co/api/people').then(function (response) {
-    console.log(response.data);
-  }) */
 }
 function playAudio(){
   $('#bgAudio').get(0).play();
@@ -52,7 +47,6 @@ function playAudio(){
 function stopAudio() {
   $('#stopAudio').text("Play Audio");
   var audio = $('audio').get(0).pause();
-  // audio.currentTime = 0;
 }
 function setImages(numCards){
   var selected = $('.cardFront');
@@ -78,10 +72,6 @@ function setImages(numCards){
 function createCards(numOfCards){
 //!--------DYNAMICALLY CREATING THE CARDS-----//
   var rowsToMake = numOfCards/6
- /*  if (rowsToMake%3===0){
-    console.log("TESTING CHECK");
-    rowsToMake=18;
-  } */
   var gameScreen = $('.game');
   for (var makeRow = rowsToMake ;makeRow>0;makeRow--){
 //!---------------CREATE ROW---------------//
@@ -127,23 +117,19 @@ function clicked(event) {
     }
   }
   else{
-    // $(event.currentTarget.firstElementChild).toggleClass('flipped');
     $(event.currentTarget).addClass('flipped');
 
 //!-------------------FIRST CARD--------------------//
     if (firstClicked === null && secondClicked === null) {
       firstClicked = $(event.currentTarget.firstElementChild);
-      // firstClickedBack = $(event.currentTarget.lastElementChild);
       firstCard = $(event.currentTarget).addClass('clicked');
       if(cheat){
         var cheatGlow = $('.cardFront');
         var checker;
           for(var search = 0, cardNumber = 0;search <18;search++,cardNumber++){
             checker = $(cheatGlow[search]);
-            // console.log(checker.css('background-image') === firstClicked.css('background-image'));
             if (checker.css('background-image') === firstClicked.css('background-image')){
               checker.parent().addClass('flipped');
-              // checkerBack.addClass('matchedLight');
             }
           }
       }
@@ -152,7 +138,6 @@ function clicked(event) {
     else {
 
       secondClicked = $(event.currentTarget.firstElementChild);
-      // secondClickedBack = $(event.currentTarget.lastElementChild);
       secondCard = $(event.currentTarget);
       tryAttempts++;
 //!-----------DIFFERENT CARDS CLICKED--------------//
@@ -190,8 +175,6 @@ function clicked(event) {
 function restartGame(){
   modal.addClass('hide');
   $('div.card').removeClass('clicked flipped matchedLight matchedDark');
-/*   $('.cardFront').addClass('hide');
-  $('.cardBack').removeClass('hide'); */
   tryAttempts = 0;
   tryAccuacy = 0;
   firstClicked = null;
@@ -201,7 +184,6 @@ function restartGame(){
   secondClickedBack = null;
   firstCard = null;
   secondCard = null;
-  // statsObj = {};
   setTimeout(setImages,1000)
   updateStats();
   $('.card').css('cursor','');
