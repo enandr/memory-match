@@ -181,7 +181,11 @@ header {
     width: 100%;
   }
   .stats div{
-    margin: 0px 10px;
+    margin: 10px;
+    height: 20px;
     width: 150px;
+  }
+  button{
+    margin-top: 20px;
   }
 }
