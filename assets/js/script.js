@@ -74,10 +74,15 @@ function createCards(numOfCards){
 //!--------DYNAMICALLY CREATING THE CARDS-----//
   var rowsToMake = numOfCards/6
   var gameScreen = $('.game');
+  var cardCount = 6;
+  if ($(document).width()<=600){
+    cardCount = 3;
+    rowsToMake = numOfCards / 3;
+  }
   for (var makeRow = rowsToMake ;makeRow>0;makeRow--){
 //!---------------CREATE ROW---------------//
     var newRow = $('<div>').addClass('row');
-    for (var makecard = 6;makecard>0;makecard--){
+    for (var makecard = cardCount;makecard>0;makecard--){
 //!-------CREATE CARD AND FACES AND APPEND THEM----------//
       var newCard = $('<div>').addClass('card');
       var newFrontCard = $('<div>').addClass('cardFront');
@@ -146,18 +151,14 @@ function clicked(event) {
 //!-----------DIFFERENT CARDS CLICKED--------------//
       if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
         $('.card').prop('disabled', true);
-        if (sound){
-        checkWhichMisMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
-        }
+        checkWhichMisMatch(firstClicked.css('background-image'), secondClicked.css('background-image'),sound);
         updateStats();
       }
 //!-----------END DIFFERENT CARDS CLICKED----------//
 //!-------------SAME CARDS CLICKED----------------//
       else {
         unlockItem(firstClicked.css('background-image'))
-        if (sound){
-        checkWhichMatch(firstClicked.css('background-image'), secondClicked.css('background-image'));
-        }
+        checkWhichMatch(firstClicked.css('background-image'), secondClicked.css('background-image'),sound);
         isLightOrDark(firstClicked.css('background-image'));
         firstCard.addClass('clicked');
         secondCard.addClass('clicked');
