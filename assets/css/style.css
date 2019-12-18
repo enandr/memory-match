@@ -42,10 +42,8 @@ header {
   transform: rotateY(180deg);
 }
 .stats {
-  width: 10%;
-  position: fixed;
+  width: 200px;
   text-align: center;
-  margin-top: 0px;
   height: 100%;
   background-color: transparent;
   color: yellow;
@@ -57,9 +55,6 @@ header {
 .row {
   display: flex;
   justify-content: center;
-}
-.stats, .game {
-  margin: auto;
 }
 .container {
   display: flex;
@@ -75,7 +70,6 @@ header {
 .cardBack {
   background-color: blue;
   background-image: url("../images/final_images/card-back.jpg");
-  /* display: none; */
 }
 .cardFront {
   background-repeat: no-repeat;
@@ -148,7 +142,11 @@ p{
 @media (max-width: 600px) {
   .container{
     display: flex;
+    flex-direction: column;
     height:100vh;
+  }
+  body{
+    overflow: hidden;
   }
   header {
   font-size: .4rem;
@@ -157,34 +155,46 @@ p{
     height:100%;
   }
   .modal{
-    width:100vh;
+    width:100vw;
   }
   .modalBody{
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
   }
-  .modalText{
+  .modalText,.starterText{
     font-size: .5rem;
     color: yellow;
     font-family: StarWars;
     letter-spacing: .5rem;
   }
   .card{
-    height:10vh;
-    width:12vh;
+    height:85px;
+    width:65px;
     box-shadow: 0px 0px 5px white;
+    margin:5px auto;
   }
   .stats{
     height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
+    position:initial;
   }
   .stats div{
     margin: 10px;
     height: 20px;
     width: 100%;
   }
-  button{
-    margin-top: 20px;
+    .stats div p{
+    margin: 0;
+    white-space: nowrap;
+    display: block;
   }
-
+  .stopAudio{
+    visibility: hidden;
+  }
+  .game{
+    margin-top: 40px;
+  }
 }
