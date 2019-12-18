@@ -21,9 +21,10 @@ header {
   font-weight: bold;
 }
 .stats div {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  color: yellow;
+  font-family: StarWars;
   margin: 10px;
-  height: 40px;
   border-radius: 10px;
 }
 .card {
@@ -47,6 +48,8 @@ header {
   margin-top: 0px;
   height: 100%;
   background-color: transparent;
+  color: yellow;
+  font-family: StarWars;
 }
 .game {
   width: 100%;
