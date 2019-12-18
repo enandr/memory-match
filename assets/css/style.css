@@ -179,11 +179,9 @@ header {
     align-items: center;
     height: fit-content;
     width: 100%;
-    color:white;
   }
   .stats div{
-    margin: 5px 10px;
-    color:black;
+    margin: 0px 10px;
     width: 150px;
   }
 }
