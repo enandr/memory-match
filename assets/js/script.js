@@ -18,7 +18,8 @@ var firstClicked = null,
     superCheatSetting = false,
     showStartModal=true,
     unlocks = {},
-    cheat=false;
+    cheat=false,
+    sound=false;
 function initializeApp(){
   modal = $("#modal").addClass('hide');
   modalInfo = $("#infoModal").addClass('hide');
@@ -103,9 +104,11 @@ function applyClick(){
   var audiobtn = $('#stopAudio').on('click',function () {
     if (audiobtn.text() === 'Stop Audio'){
       stopAudio();
+      sound = false;
     }
     else{
       playAudio();
+      sound = true;
     }
   });
 }
