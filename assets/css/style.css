@@ -50,9 +50,11 @@ header {
   background-color: transparent;
   color: yellow;
   font-family: StarWars;
+  position: fixed;
 }
 .game {
   width: 100%;
+
 }
 .row {
   display: flex;
