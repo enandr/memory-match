@@ -72,23 +72,22 @@ function setImages(numCards){
 }
 function createCards(numOfCards){
 //!--------DYNAMICALLY CREATING THE CARDS-----//
-  var rowsToMake = numOfCards/6
   var gameScreen = $('.game');
-  var cardCount = 6;
-  if ($(document).width()<=600){
-    cardCount = 3;
-    rowsToMake = numOfCards / 3;
-  }
-  for (var makeRow = rowsToMake ;makeRow>0;makeRow--){
+  for (var makeRow = 3 ;makeRow>0;makeRow--){
 //!---------------CREATE ROW---------------//
     var newRow = $('<div>').addClass('row');
-    for (var makecard = cardCount;makecard>0;makecard--){
+    for (var makecard = 2;makecard>0;makecard--){
 //!-------CREATE CARD AND FACES AND APPEND THEM----------//
-      var newCard = $('<div>').addClass('card');
-      var newFrontCard = $('<div>').addClass('cardFront');
-      var newBackCard = $('<div>').addClass('cardBack');
-      newCard.append(newFrontCard,newBackCard);
-      newRow.append(newCard);
+      var halfRow = $('<div>').addClass('halfRow');
+      for (var innerRow = 3; innerRow>0;innerRow--){
+        var newCard = $('<div>').addClass('card');
+        var newFrontCard = $('<div>').addClass('cardFront');
+        var newBackCard = $('<div>').addClass('cardBack');
+        newCard.append(newFrontCard, newBackCard);
+        halfRow.append(newCard);
+      }
+
+      newRow.append(halfRow);
     }
     gameScreen.append(newRow);
   }

@@ -199,4 +199,8 @@ p{
   .game{
     margin-top: 40px;
   }
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
 }
