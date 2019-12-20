@@ -30,8 +30,8 @@ header {
   border-radius: 10px;
 }
 .card {
-  height: 230px;
-  width: 160px;
+  height: 24vh;
+  width: 8vw;
   display: inline-block;
   margin: 6px;
   position: relative;
@@ -172,10 +172,10 @@ p{
     letter-spacing: .5rem;
   }
   .card{
-    height:85px;
-    width:65px;
+    height:11vh;
+    width:15vw;
     box-shadow: 0px 0px 5px white;
-    margin:5px auto;
+    margin:5px 10px;
   }
   .stats{
     height: fit-content;
