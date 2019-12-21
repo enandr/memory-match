@@ -142,7 +142,6 @@ header {
 p{
   display: inline-block;
 }
-
 @media (max-width: 600px) {
   .container{
     display: flex;
@@ -245,5 +244,19 @@ p{
   .row {
     flex-direction: row;
     align-items: center;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .game,.stats{
+    visibility: hidden;
+  }
+  .header:after{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    content: 'BEST PLAYED IN PORTRAIT';
+    text-shadow: 1px 1px 5px white;
+    font-weight: bold;
+  }
+  body{
+    background: url("../images/final_images/backgrounds/bg8.jpg");
   }
 }
