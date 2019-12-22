@@ -168,13 +168,16 @@ function clicked(event) {
         matches+=1;
         updateStats();
         if (matches===9){
-          gamesPlayed++;
-          matches=0;
-          $('.modalText').text("the force is strong with you!");
-          if (sound){
-            $('.vader').get(Math.floor(Math.random()*5)).play();
-          }
-          modal.removeClass('hide');
+          setTimeout(() => {
+            gamesPlayed++;
+            matches = 0;
+            $('.modalText').text("the force is strong with you!");
+            if (sound) {
+              $('.vader').get(Math.floor(Math.random() * 5)).play();
+            }
+            modal.removeClass('hide');
+          }, 2000);
+
         }
       }
 //!-------------END SAME CARDS CLICKED-------------//
