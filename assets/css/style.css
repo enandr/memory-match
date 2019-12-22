@@ -150,6 +150,7 @@ p{
   }
   body{
     overflow: hidden;
+    background-size: auto;
   }
   header {
   font-size: .4rem;
