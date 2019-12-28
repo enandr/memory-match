@@ -9,7 +9,7 @@ body{
   background-color: black;
   margin: 0;
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   user-select: none;
   overflow: hidden;
 }
@@ -150,7 +150,8 @@ p{
   }
   body{
     overflow: hidden;
-    background-size: auto;
+    background-size: cover;
+    height: 100vh;
   }
   header {
   font-size: .4rem;
@@ -259,5 +260,7 @@ p{
   }
   body{
     background: url("../images/final_images/backgrounds/bg8.jpg");
+    overflow: hidden;
+    height: 100vh;
   }
 }
