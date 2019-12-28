@@ -21,8 +21,11 @@ var firstClicked = null,
     cheat=false,
     sound=false;
 function initializeApp(){
+  if (window.innerWidth<1000){
+    showStartModal=false;
+  }
   modal = $("#modal").addClass('hide');
-  modalInfo = $("#infoModal").addClass('hide');
+  infoModal = $("#infoModal").addClass('hide');
   starterModal = $('#startermodal');
   if (!showStartModal){
     starterModal.addClass('hide');
