@@ -22,7 +22,7 @@ https://memorymatch.rogerenand.com
 * User can reset game
 
 ## Images
-![Memory Match Game](https://github.com/enandr/memory-match/blob/oop/Screen%20Shot%202019-12-16%20at%206.15.30%20PM.png "Memory Match Game")
+![Memory Match Game](https://github.com/enandr/memory-match/blob/master/Screen%20Shot%202020-01-13%20at%202.23.47%20PM.png "Memory Match Game")
 
 ## Development
 1. Clone The Repository
