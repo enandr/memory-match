@@ -143,10 +143,15 @@ header {
 .card:hover {
   cursor: pointer;
 }
+
 p{
   display: inline-block;
 }
 @media (max-width: 600px) {
+  .modalClose{
+  background-color: white;
+  color:black;
+}
   .container{
     display: flex;
     flex-direction: column;
@@ -215,6 +220,10 @@ p{
 }
 
 @media (min-width: 601px) and (max-width: 1400px) {
+  .modalClose{
+  background-color: white;
+  color:black;
+}
   .container{
     display: flex;
     flex-direction: column;
@@ -255,6 +264,10 @@ p{
   }
 }
 @media screen and (max-width: 850px) and (orientation: landscape){
+  .modalClose{
+  background-color: white;
+  color:black;
+}
   .game,.stats{
     visibility: hidden;
   }
