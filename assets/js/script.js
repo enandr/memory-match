@@ -24,6 +24,7 @@ function initializeApp(){
   if (window.innerWidth<1000){
     showStartModal=false;
   }
+  console.log(window.devicePixelRatio);
   modal = $("#modal").addClass('hide');
   infoModal = $("#infoModal").addClass('hide');
   starterModal = $('#startermodal');
@@ -153,6 +154,7 @@ function clicked(event) {
 //!-----------DIFFERENT CARDS CLICKED--------------//
       if (firstClicked.css('background-image') !== secondClicked.css('background-image')) {
         $('.card').prop('disabled', true);
+        $('.card').addClass('waiting');
         checkWhichMisMatch(firstClicked.css('background-image'), secondClicked.css('background-image'),sound);
         updateStats();
       }

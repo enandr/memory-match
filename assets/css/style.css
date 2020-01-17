@@ -221,7 +221,9 @@ p{
     align-items: center;
   }
 }
-
+.waiting{
+  pointer-events: none;
+}
 @media (min-width: 601px) and (max-width: 1400px) {
   .modalClose{
   background-color: white;
@@ -272,7 +274,7 @@ p{
     align-items: center;
   }
 }
-@media screen and (max-width: 850px) and (orientation: landscape){
+@media screen and (max-width: 850px) and (orientation: landscape) /* and (max-resolution: 300dpi) */{
   .modalClose{
   background-color: white;
   color:black;
