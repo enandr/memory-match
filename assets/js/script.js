@@ -122,9 +122,9 @@ function applyClick(){
 function clicked(event) {
   if ($(event.currentTarget).hasClass('clicked')){
   //?------------IF HAS 'CLICKED' DO NOTHING-------------//
-    if ($(event.currentTarget).hasClass('clicked') && $(event.currentTarget).hasClass('matchedLight') || $(event.currentTarget).hasClass('matchedDark')) {
+/*     if ($(event.currentTarget).hasClass('clicked') && $(event.currentTarget).hasClass('matchedLight') || $(event.currentTarget).hasClass('matchedDark')) {
     getInfoOnPerson($(event.currentTarget.firstElementChild));
-    }
+    } */
   }
   else{
     $(event.currentTarget).addClass('flipped');
@@ -164,8 +164,8 @@ function clicked(event) {
         isLightOrDark(firstClicked.css('background-image'));
         firstCard.addClass('clicked');
         secondCard.addClass('clicked');
-        firstCard.css('cursor','help');
-        secondCard.css('cursor', 'help');
+/*         firstCard.css('cursor','help');
+        secondCard.css('cursor', 'help'); */
         firstClicked = null;
         secondClicked = null;
         matches+=1;
