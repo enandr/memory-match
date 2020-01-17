@@ -38,6 +38,7 @@ function checkWhichMisMatch(match,match2,playSound) {
     firstClicked = null;
     secondClicked = null;
     $('.card').prop('disabled', false);
+    $('.card').removeClass('waiting');
   }, waitTime)
 }
 function isLightOrDark(card) {
