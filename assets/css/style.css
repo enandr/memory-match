@@ -224,6 +224,12 @@ p{
   background-color: white;
   color:black;
 }
+  .header:after{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    content: 'BEST PLAYED IN PORTRAIT';
+    text-shadow: 1px 1px 5px white;
+    font-weight: bold;
+  }
   .container{
     display: flex;
     flex-direction: column;
