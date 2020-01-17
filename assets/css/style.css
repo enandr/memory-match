@@ -143,7 +143,10 @@ header {
 .card:hover {
   cursor: pointer;
 }
-
+button:hover {
+  background-color: darkgrey;
+  cursor: pointer;
+}
 p{
   display: inline-block;
 }
