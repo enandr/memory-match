@@ -150,7 +150,7 @@ button:hover {
 p{
   display: inline-block;
 }
-@media (max-width: 600px) {
+@media (max-width: 684px) {
   .modalClose{
   background-color: white;
   color:black;
@@ -224,7 +224,7 @@ p{
 .waiting{
   pointer-events: none;
 }
-@media (min-width: 601px) and (max-width: 1400px) {
+@media (min-width: 685px) and (max-width: 1596px) {
   .modalClose{
   background-color: white;
   color:black;
@@ -274,7 +274,7 @@ p{
     align-items: center;
   }
 }
-@media screen and (max-width: 850px) and (orientation: landscape) /* and (max-resolution: 300dpi) */{
+@media screen and (max-width: 969px) and (orientation: landscape) /* and (max-resolution: 300dpi) */{
   .modalClose{
   background-color: white;
   color:black;
